@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Input de Telefone
+    </title>
+    
+    <!-- Estilo do Site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Funções do Site -->
+    <script type="text/javascript">
+        function salvar(){
+            let telefone = document.getElementById("input").value
+
+            let erros = []
+
+            if (telefone.trim() == "") {
+              erros.push("O número de telefone não deve estar vazio")
+            }
+
+            if (telefone.length < 9 && telefone.trim() != "") {
+              erros.push("O formato do número de telefone digitado é inválido")
+            }
+
+            if (erros.length > 0) {
+                swal("Opa! Um erro ocorreu", erros.join(",\n "), "error")
+                document.getElementById("input").value = ""
+            } else {
+                swal(`Estamos ligando para este número ${telefone}`, "O número de telefone foi salvo com sucesso", "success")
+                document.getElementById("input").value = ""
+            }
+            return false
+        }
+    </script>
+</head>
+<body>
+  <div class="Wrapper">
+    <h1 class="Title">Input de Número de Telefone!</h1>
+    <form action="" method="post" onsubmit="return salvar()">
+      <div class="Input">
+        <input type="text" id="input" class="Input-text" placeholder="Seu número de telefone e.g. 4002-8922">
+
+        <label for="input" class="Input-label">
+          Número de Telefone
+        </label>
+      </div>
+
+      <div class="btnop">
+        <button type="submit" class="bn39">
+          <span class="bn39span">
+            Salvar
+          </span>
+      </div>
+    </form>
+  </div>
+    <!-- Plugin do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin de Notificação-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Plugin do JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <!-- Mascara de Inputs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script>
+      $('#input').mask('0000-0000');
+    </script>
+</body>
+</html>

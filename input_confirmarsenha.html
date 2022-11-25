@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Input de Confirmar Senha
+    </title>
+    
+    <!-- Estilo do Site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Funções do Site -->
+    <script type="text/javascript">
+        function salvar(){
+            let senha = document.getElementById("input").value
+            let senha2 = document.getElementById("input2").value
+
+            let erros = []
+
+            // Senha Vazia
+
+            if (senha.trim() == "" && senha.trim() == "") {
+              erros.push("Os campos da senha não devem estar vazios")
+            }
+
+            else if (senha.trim() == "") {
+              erros.push("A senha não deve estar vazia")
+            }
+
+            else if (senha2.trim() == "") {
+              erros.push("A confirmação da senha não deve estar vazia")
+            }
+
+            // Letra Minúscula
+
+            if (!/^(?=.*[a-z])/g.test(senha) && senha != "" && !/^(?=.*[a-z])/g.test(senha2) && senha2 != "") {
+              erros.push("Os campos da senha devem ter pelo menos 1 letra minúscula")
+            }
+
+            else if (!/^(?=.*[a-z])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 letra minúscula")
+            }
+
+            else if (!/^(?=.*[a-z])/g.test(senha2) && senha2 != "") {
+              erros.push("A confirmação da senha deve ter pelo menos 1 letra minúscula")
+            }
+
+            // Letra maiúscula
+
+            if (!/^(?=.*[A-Z])/g.test(senha) && senha != "" && !/^(?=.*[A-Z])/g.test(senha2) && senha2 != "") {
+              erros.push("Os campos da senha devem ter pelo menos 1 letra maiúscula")
+            }
+
+            else if (!/^(?=.*[A-Z])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 letra maiúscula")
+            }
+
+            else if (!/^(?=.*[A-Z])/g.test(senha2) && senha2 != "") {
+              erros.push("A confirmação da senha deve ter pelo menos 1 letra maiúscula")
+            }
+
+            // Número
+
+            if (!/^(?=.*[0-9])/g.test(senha) && senha != "" && !/^(?=.*[0-9])/g.test(senha2) && senha2 != "") {
+              erros.push("Os campos da senha devem ter pelo menos 1 número")
+            }
+
+            else if (!/^(?=.*[0-9])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 número")
+            }
+
+            else if (!/^(?=.*[0-9])/g.test(senha2) && senha2 != "") {
+              erros.push("A confirmação da senha deve ter pelo menos 1 número")
+            }
+
+            // Caractere Especial
+
+            if (!/^(?=.*[!@#$%&*()-_+=^])/g.test(senha) && senha != "" && !/^(?=.*[!@#$%&*()-_+=^])/g.test(senha2) && senha2 != "") {
+              erros.push("Os campos da senha devem ter pelo menos 1 caractere especial")
+            }
+
+            else if (!/^(?=.*[!@#$%&*()-_+=^])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 caractere especial")
+            }
+
+            else if (!/^(?=.*[!@#$%&*()-_+=^])/g.test(senha2) && senha2 != "") {
+              erros.push("A confirmação da senha deve ter pelo menos 1 caractere especial")
+            }
+
+            // Mínimo de Caracteres
+
+            if (!/^[0-9a-zA-Z!@#$%&*()-_+=^]{8,}/g.test(senha) && senha != "" && !/^[0-9a-zA-Z!@#$%&*()-_+=^]{8,}/g.test(senha2) && senha2 != "") {
+              erros.push("Os campos da senha devem ter pelo menos 8 caracteres")
+            }
+
+            else if (!/^[0-9a-zA-Z!@#$%&*()-_+=^]{8,}/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 8 caracteres")
+            }
+
+            else if (!/^[0-9a-zA-Z!@#$%&*()-_+=^]{8,}/g.test(senha2) && senha2 != "") {
+              erros.push("A confirmação da senha deve ter pelo menos 8 caracteres")
+            }
+
+            // Senha não coincide
+
+            if (senha != senha2) {
+              erros.push("As senhas digitadas não coincidem")
+            }
+
+            if (erros.length > 0) {
+                swal("Opa! Um erro ocorreu", erros.join(",\n "), "error")
+                document.getElementById("input").value = ""
+                document.getElementById("input2").value = ""
+            } else {
+                swal(`A sua senha confirmada é ${senha2}`, "Sua senha foi salva com sucesso", "success")
+                document.getElementById("input").value = ""
+                document.getElementById("input2").value = ""
+            }
+            return false
+        }
+    </script>
+</head>
+<body>
+  <div class="Wrapper">
+    <h1 class="Title">Input de Confirmar Senha!</h1>
+    <form action="" method="post" onsubmit="return salvar()">
+      <div class="Input">
+        <input type="password" id="input" class="Input-text" placeholder="Sua Senha e.g. Tobias2@">
+
+        <label for="input" class="Input-label">
+          Senha
+        </label>
+      </div>
+
+      <br>
+
+      <div class="Input">
+        <input type="password" id="input2" class="Input-text" placeholder="Confirmação da Senha e.g. Tobias2@">
+
+        <label for="input" class="Input-label">
+          Confirmar Senha
+        </label>
+      </div>
+
+      <div class="btnop">
+        <button type="submit" class="bn39">
+          <span class="bn39span">
+            Salvar
+          </span>
+      </div>
+    </form>
+  </div>
+    
+    <!-- Plugin do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Plugin de Notificação-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>

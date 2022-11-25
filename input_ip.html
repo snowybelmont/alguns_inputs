@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Input de Endereço de IP
+    </title>
+    
+    <!-- Estilo do Site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Funções do Site -->
+    <script type="text/javascript">
+        function salvar(){
+            let ip = document.getElementById("input").value
+            let serverip = document.getElementById("input2").value
+
+            let erros = []
+
+            // Vazio
+
+            if (ip.trim() == "" && serverip.trim() == "") {
+              erros.push("Os campos de endereço de ip não devem estar vazios")
+            }
+
+            else if (ip.trim() == "") {
+              erros.push("O endereço de ip não deve estar vazio")
+            }
+
+            else if (serverip.trim() == "") {
+              erros.push("O endereço de ip não deve estar vazio")
+            }
+
+            // Invalido
+
+            if (ip.length < 15 && ip.trim() != "" && serverip.length < 15 && serverip.trim() != "") {
+              erros.push("Os formatos de endereços de ips digitados são inválidos")
+            }
+
+            else if (ip.length < 15 && ip.trim() != "") {
+              erros.push("O formato de endereço de ip digitado é inválido")
+            }
+
+            else if (serverip.length < 15 && serverip.trim() != "") {
+              erros.push("O formato de endereço de ip digitado é inválido")
+            }
+
+            if (erros.length > 0) {
+                swal("Opa! Um erro ocorreu", erros.join(",\n "), "error")
+                document.getElementById("input").value = ""
+                document.getElementById("input2").value = ""
+            } else {
+                swal(`Seu IP é ${ip}, O IP que você está acessando é ${serverip}`, "Seu IP foi salvo com sucesso", "success")
+                document.getElementById("input").value = ""
+                document.getElementById("input2").value = ""
+            }
+            return false
+        }
+    </script>
+</head>
+<body>
+  <div class="Wrapper">
+    <h1 class="Title">Input de Endereço de IP</h1>
+    <form action="" method="post" onsubmit="return salvar()">
+      <div class="Input">
+        <input type="text" id="input" class="Input-text" placeholder="Seu IP e.g. 9ZZ.9ZZ.9ZZ.9ZZ">
+
+        <label for="input" class="Input-label">
+          Endereço de IP
+        </label>
+      </div>
+
+      <br>
+
+      <div class="Input">
+        <input type="text" id="input2" class="Input-text" placeholder="IP do Servidor e.g. 099.099.099.099">
+
+        <label for="input" class="Input-label">
+          Endereço de IP do Server
+        </label>
+      </div>
+
+      <div class="btnop">
+        <button type="submit" class="bn39">
+          <span class="bn39span">
+            Salvar
+          </span>
+      </div>
+    </form>
+  </div>
+    <!-- Plugin do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin de Notificação-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Plugin do JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <!-- Mascara de Inputs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script>
+      $('#input').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+        translation: {
+          'Z': {
+          pattern: /[0-9]/, optional: true
+          }
+        }
+      });
+      $('#input2').mask('099.099.099.099');
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Input de Data e Tempo
+    </title>
+    
+    <!-- Estilo do Site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Funções do Site -->
+    <script type="text/javascript">
+        function salvar(){
+            let data = document.getElementById("input").value
+            let tempo = document.getElementById("input2").value
+            let dataTempo = document.getElementById("input3").value
+
+            let erros = []
+
+            // Vazio
+
+            if (data.trim() == "" && tempo.trim() == "" && dataTempo.trim() == "") {
+              erros.push("Os campos não devem estar vazios")
+            }
+
+            else if (data.trim() == "") {
+              erros.push("A data não deve estar vazio")
+            }
+
+            else if (tempo.trim() == "") {
+              erros.push("O tempo não deve estar vazio")
+            }
+
+            else if (dataTempo.trim() == "") {
+              erros.push("A data e o tempo não devem estar vazios")
+            }
+
+            // Invalido
+
+            if (data.length < 10 && data.trim() != "" && tempo.length < 8 && tempo.trim() != "" && dataTempo.length < 21 && dataTempo.trim() != "") {
+              erros.push("Os formatos são inválidos")
+            }
+
+            else if (data.length < 10 && data.trim() != "") {
+              erros.push("O formato de data digitado é inválido")
+            }
+
+            else if (tempo.length < 8 && tempo.trim() != "") {
+              erros.push("O formato de tempo digitado é inválido")
+            }
+
+            else if (dataTempo.length < 21 && dataTempo.trim() != "") {
+              erros.push("O formato de data e tempo digitado é inválido")
+            }
+
+            if (erros.length > 0) {
+                swal("Opa! Um erro ocorreu", erros.join(",\n "), "error")
+                document.getElementById("input").value = ""
+                document.getElementById("input2").value = ""
+                document.getElementById("input3").value = ""
+            } else {
+                swal(`Data: ${data}, Horário: ${tempo}, Data e Tempo: ${dataTempo}`, "A data salvo com sucesso", "success")
+                document.getElementById("input").value = ""
+                document.getElementById("input2").value = ""
+                document.getElementById("input3").value = ""
+            }
+            return false
+        }
+    </script>
+</head>
+<body>
+  <div class="Wrapper">
+    <h1 class="Title">Inputs de Data e Tempo</h1>
+    <form action="" method="post" onsubmit="return salvar()">
+      <div class="Input">
+        <input type="text" id="input" class="Input-text" placeholder="Data e.g. DD/MM/YYYY">
+
+        <label for="input" class="Input-label">
+          Data
+        </label>
+      </div>
+
+      <br>
+
+      <div class="Input">
+        <input type="text" id="input2" class="Input-text" placeholder="Tempo e.g. 00:00:00">
+
+        <label for="input" class="Input-label">
+          Tempo
+        </label>
+      </div>
+
+      <br>
+
+      <div class="Input">
+        <input type="text" id="input3" class="Input-text" placeholder="Data e Tempo e.g. 00/00/0000 as 00:00:00">
+
+        <label for="input" class="Input-label">
+          Data e Tempo
+        </label>
+      </div>
+
+      <div class="btnop">
+        <button type="submit" class="bn39">
+          <span class="bn39span">
+            Salvar
+          </span>
+      </div>
+    </form>
+  </div>
+    <!-- Plugin do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin de Notificação-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Plugin do JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <!-- Mascara de Inputs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+    <script>
+      $('#input').mask('00/00/0000');
+      $('#input2').mask('00:00:00');
+      $('#input3').mask('00/00/0000 as 00:00:00');
+    </script>
+</body>
+</html>

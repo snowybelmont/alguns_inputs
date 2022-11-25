@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Input de Senha
+    </title>
+    
+    <!-- Estilo do Site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Funções do Site -->
+    <script type="text/javascript">
+        function salvar(){
+            let senha = document.getElementById("input").value
+
+            let erros = []
+
+            if (senha.trim() == "") {
+              erros.push("A senha não deve estar vazia")
+            }
+
+            if (!/^(?=.*[a-z])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 letra minúscula")
+            }
+
+            if (!/^(?=.*[A-Z])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 letra maiúscula")
+            }
+
+            if (!/^(?=.*[0-9])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 número")
+            }
+
+            if (!/^(?=.*[!@#$%&*()-_+=^])/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 1 caractere especial")
+            }
+
+            if (!/^[0-9a-zA-Z!@#$%&*()-_+=^]{8,}/g.test(senha) && senha != "") {
+              erros.push("A senha deve ter pelo menos 8 caracteres")
+            }
+
+            if (erros.length > 0) {
+                swal("Opa! Um erro ocorreu", erros.join(",\n "), "error")
+                document.getElementById("input").value = ""
+            } else {
+                swal(`A sua senha temporária é ${senha}`, "Sua senha foi salva com sucesso", "success")
+                document.getElementById("input").value = ""
+            }
+            return false
+        }
+    </script>
+</head>
+<body>
+  <div class="Wrapper">
+    <h1 class="Title">Input de Senha!</h1>
+    <form action="" method="post" onsubmit="return salvar()">
+      <div class="Input">
+        <input type="password" id="input" class="Input-text" placeholder="Sua Senha e.g. Tobias2@">
+
+        <label for="input" class="Input-label">
+          Senha
+        </label>
+      </div>
+
+      <div class="btnop">
+        <button type="submit" class="bn39">
+          <span class="bn39span">
+            Salvar
+          </span>
+      </div>
+    </form>
+  </div>
+    
+    <!-- Plugin do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Plugin de Notificação-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
